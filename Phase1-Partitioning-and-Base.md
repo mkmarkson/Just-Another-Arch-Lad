@@ -86,3 +86,52 @@ Write the changes
 
 `arch-chroot /mnt`
 
+## Swap
+
+`dd if=/dev/zero of=/swapfile bs=1M count=8192 status=progress`	#8GB swapfile  
+`chmod 600 /swapfile`  
+`mkswap /swapfile`  
+`swapon /swapfile`  
+
+Add swapfile into fstab file  
+Add line to the bottom of the file  
+`/swapfile none swap defaults 0 0`  
+
+## Localisation
+
+`ln -sf /usr/share/zoneinfo/Europe/Tallinn /etc/localtime`  
+`hwclock --systohc`  
+
+Now remove comment in /etc/locale.gen  
+`en_US.UTF-8 UTF-8`  
+`echo "LANG=en_us.UTF-8" >> /etc/locale.conf`  
+
+## Hostname
+
+`echo "arch" >> /etc/hostname`  
+
+Put this in /etc/hosts  
+`
+127.0.0.1 localhost
+::1	  localhost
+127.0.1.1 arch.localdomain arch
+
+## Root password
+
+`passwd`
+
+## Additional packages
+
+`pacman -S efibootmgr networkmanager network-manager-applet wireless_tools wpa_supplicant dialog os-prober mtools dosfstools base-devel linux-headers`
+
+## Install systemd-boot
+
+`bootctl --path=/boot install`  
+`cd /boot/loader`  
+Edit loader.conf
+1. Uncomment firstlane
+2. Last line to `default arch-*`  
+`cd entries`
+
+
+
