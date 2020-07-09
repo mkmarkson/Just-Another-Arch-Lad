@@ -137,11 +137,10 @@ Edit loader.conf
 `vim arch.conf`  
   
 Add the following:  
-`
-title Arch Linux  
-linux /vmlinuz-linux
-initrd	/initramfs-linux.img  
-options root=/dev/nvme0n1p2 rw`
+`title Arch Linux`  
+`linux /vmlinuz-linux`  
+`initrd	/initramfs-linux.img`  
+`options root=/dev/nvme0n1p2 rw`
 
 ## Enable network manager
 
@@ -149,7 +148,7 @@ options root=/dev/nvme0n1p2 rw`
 
 ## Add new user
 
-`useradd -mG wheel username` 
+`useradd -mG wheel username`  
 `passwd username`  
 `EDITOR=VIM visudo`  
 Remove comment from the first `%wheel ALL=(ALL) ALL  
@@ -163,7 +162,7 @@ Remove comment from the first `%wheel ALL=(ALL) ALL
 
 ## Post installation packages
 
-Install graphics based on your hardware
+Install graphics based on your hardware  
 `sudo pacman -S xf86-video-qxl`  
 `sudo pacman -S xf86-video-intel`(or amdgpu)  
 `sudo pacman -S nvidia nvidia-utils`  
