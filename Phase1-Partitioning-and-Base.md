@@ -128,10 +128,43 @@ Put this in /etc/hosts
 
 `bootctl --path=/boot install`  
 `cd /boot/loader`  
-Edit loader.conf
-1. Uncomment firstlane
-2. Last line to `default arch-*`  
-`cd entries`
+  
+Edit loader.conf  
+1.Uncomment first line  
+2.Last line to `default arch-\*`
+  
+`cd entries/`  
+`vim arch.conf`  
+  
+Add the following:  
+`
+title Arch Linux  
+linux /vmlinuz-linux
+initrd	/initramfs-linux.img  
+options root=/dev/nvme0n1p2 rw`
+
+## Enable network manager
+
+`systemctl enable NetworkManager`
+
+## Add new user
+
+`useradd -mG wheel username` 
+`passwd username`  
+`EDITOR=VIM visudo`  
+Remove comment from the first `%wheel ALL=(ALL) ALL  
+
+## Finish installation
+
+`exit`  
+`umount -a`  
+`reboot`
 
 
+## Post installation packages
+
+Install graphics based on your hardware
+`sudo pacman -S xf86-video-qxl`  
+`sudo pacman -S xf86-video-intel`(or amdgpu)  
+`sudo pacman -S nvidia nvidia-utils`  
 
